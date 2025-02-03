@@ -17,8 +17,8 @@ body {
 
 .card {
   background: white;
-  width: 90%;
-  max-width: 600px;
+  width: 100vh;
+  max-width: 100vh;
   padding: 25px 45px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -44,7 +44,7 @@ h3 {
 }
 
 .input-field {
-  width: 70%;
+  width: 35%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -85,3 +85,4 @@ h3 {
 .download-btn:hover {
   background-color: #800;
 }
+

@@ -93,40 +93,45 @@ function App() {
   return (
     <div className="container">
       <div className="card">
-        <h3>Enter Your Certificate Number</h3>
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Enter Certificate Number"
-            onChange={handleChange}
-            value={certificateNumber}
-            className="input-field"
-          />
-          <button
-            onClick={handleSubmit}
-            className="submit-btn"
-            disabled={loading}
-          >
-            {loading ? "LOADING..." : "SUBMIT"}
-          </button>
-        </div>
-
-        {certificateData && (
-          <div
-            ref={certificateRef}
-            className="certificate-container"
-            dangerouslySetInnerHTML={{ __html: certificateData }}
-          />
-        )}
-        
-
-        {certificateData && (
-          <div className="download-section">
-            <button onClick={handleDownload} className="download-btn">
-              DOWNLOAD
-            </button>
+        {!certificateData && (
+          <div className="input-card">
+            <h3>Enter Your Certificate Number</h3>
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Enter Certificate Number"
+                onChange={handleChange}
+                value={certificateNumber}
+                className="input-field"
+              />
+              <button
+                onClick={handleSubmit}
+                className="submit-btn"
+                disabled={loading}
+              >
+                {loading ? "LOADING..." : "SUBMIT"}
+              </button>
+            </div>
           </div>
         )}
+
+        <div>
+          {certificateData && (
+            <div
+              ref={certificateRef}
+              className="certificate-container"
+              dangerouslySetInnerHTML={{ __html: certificateData }}
+            />
+          )}
+
+          {certificateData && (
+            <div className="download-section">
+              <button onClick={handleDownload} className="download-btn">
+                DOWNLOAD
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
