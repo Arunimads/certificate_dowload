@@ -14,6 +14,11 @@ function App() {
   const handleChange = (e) => {
     setCertificateNumber(e.target.value);
   };
+  const handleClear = () => {
+    setCertificateData("");
+    setCertificateNumber("");
+    console.log("looo");
+  };
 
   const handleSubmit = async () => {
     if (!certificateNumber) {
@@ -128,6 +133,9 @@ function App() {
             <div className="download-section">
               <button onClick={handleDownload} className="download-btn">
                 DOWNLOAD
+              </button>
+              <button onClick={handleClear} className="download-btn">
+                Back
               </button>
             </div>
           )}
