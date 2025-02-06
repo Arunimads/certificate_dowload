@@ -46,7 +46,7 @@ function App() {
     }
   };
 
-  const handleDownload = async () => {
+   const handleDownload = async () => {
     if (!certificateData || !certificateRef.current) {
       Swal.fire("Error", "Certificate data not found!", "error");
       return;
@@ -59,32 +59,24 @@ function App() {
         useCORS: true,
         allowTaint: true,
         scrollY: -window.scrollY,
-        scale: 2,
+        scale: 3,
       });
 
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-      });
 
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
 
-      pdf.addImage(
-        imgData,
-        "PNG",
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
+      const pdfWidth = imgWidth * 0.264583;
+      const pdfHeight = imgHeight * 0.264583;
+
+      const pdf = new jsPDF({
+        orientation: pdfWidth > pdfHeight ? "landscape" : "portrait",
+        unit: "mm",
+        format: [pdfWidth, pdfHeight],
+      });
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(`certificate_${certificateNumber}.pdf`);
 
       setCertificateNumber("");
