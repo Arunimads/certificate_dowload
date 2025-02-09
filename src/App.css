@@ -1,11 +1,13 @@
+/* Base styles */
 body {
   font-family: "Arial", sans-serif;
   background-color: #ffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  padding: 20px;
 }
 
 .container {
@@ -13,27 +15,33 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 320px;
 }
 
 .card {
   background: white;
-  width: 100vh;
-  max-width: 100vh;
-  padding: 25px 45px;
-  /* border-radius: 10px; */
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); */
+  width: 100%;
+  min-width: 320px;
+  max-width: 800px;
+  padding: 20px;
   text-align: center;
-  height: 80vh;
+  height: auto;
+  min-height: 80vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .banner {
   width: 100%;
+  max-width: 100%;
   border-radius: 10px 10px 0 0;
+  object-fit: contain;
 }
 
 h3 {
   color: #333;
   margin: 15px 0;
+  font-size: clamp(18px, 4vw, 24px);
 }
 
 .input-group {
@@ -41,10 +49,12 @@ h3 {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 .input-field {
-  width: 35%;
+  width: clamp(200px, 35%, 300px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -59,6 +69,7 @@ h3 {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  min-width: 100px;
 }
 
 .submit-btn:hover {
@@ -69,8 +80,10 @@ h3 {
   margin-top: 20px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  gap:5px;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 .download-btn {
@@ -81,9 +94,50 @@ h3 {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  min-width: 120px;
 }
 
 .download-btn:hover {
   background-color: #800;
 }
 
+/* Certificate container styles */
+.certificate-container {
+  width: 100%;
+  min-width: 750px;
+  overflow-x: auto;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  transform-origin: center top; /* Change from left top to center top */
+}
+
+/* Scale certificate for screens smaller than 790px */
+@media screen and (max-width: 790px) {
+  .certificate-container {
+    transform: scale(0.8);
+    margin: -50px auto; /* Adjust margins to compensate for scale */
+  }
+}
+
+/* Scale further for even smaller screens */
+@media screen and (max-width: 600px) {
+  .certificate-container {
+    transform: scale(0.6);
+    margin: -100px auto; /* Adjust margins to compensate for scale */
+  }
+}
+
+/* Media query for very small screens */
+@media screen and (max-width: 360px) {
+  .card {
+    padding: 10px;
+  }
+  
+
+  
+  .certificate-container {
+    transform: scale(0.45);
+    margin: auto auto; /* Adjust margins to compensate for scale */
+  }
+}
